@@ -13,7 +13,9 @@ const UserSchema=mongoose.Schema({
     },
     maxOutput:{
         type:Number,
-        
+    },
+    availableOutput:{
+        type:Number,
     },
     contact:{
         type:Number,

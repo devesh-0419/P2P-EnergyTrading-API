@@ -14,6 +14,9 @@ const packageSchema = mongoose.Schema({
         type:Number,  //(take month(28), week(7))
     
     },
+    dailyLimit:{
+        type:Number,
+    },
     price:{     //price of Package
         type:Number,
     },
