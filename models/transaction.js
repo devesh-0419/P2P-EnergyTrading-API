@@ -22,10 +22,12 @@ const transactionSchema = mongoose.Schema({
     },
     sellerID:{
         type:mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required:true
     },
     buyerID:{
         type:mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required:true
     },
  message:{
@@ -36,6 +38,7 @@ const transactionSchema = mongoose.Schema({
     
     packageId:{
         type:mongoose.Schema.Types.ObjectId,
+        ref: 'Package',
 
     }
 });
