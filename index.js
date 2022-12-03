@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const signup = require('./routes/signUp');
 const app = express();
+require('dotenv').config();
+
+app.use(express.json());
 
 
-app.use(express.json);
-
-
+app.use('/api/v1/signup',signup);
 
 
 
