@@ -28,6 +28,10 @@ const userSchema=mongoose.Schema({
         unique:true,
         sparse:true
     },
+    isNode:{
+        type:Boolean,
+        default:false
+    },
     maxOutput:{
         type:Number,
     },
