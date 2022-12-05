@@ -1,64 +1,39 @@
 const mongoose= require('mongoose');
 
-const userSchema=mongoose.Schema({
+const UserSchema=mongoose.Schema({
     name:{
         type:String,
         required:true,
         minlength:3,
         maxlength:256
     },
-    email:{
-        type:String,
-        unique:true,
-        required:true,
-        maxlength:256,
-        minlength:10
-    },
-    password:{
-      type:String,
-      required:true
-    },
-    verifiedMail:{
-        type:Boolean,
-        default:false
-    },
     metaMaskAddress:{
         type:String,
-        maxlength:256,
-        unique:true,
-        sparse:true
+        maxlength:256
     },
-    isNode:{
-        type:Boolean,
-        default:false
+    maxOutput: {
+        type: Number,
     },
-    maxOutput:{
-        type:Number,
+    availableOutput: {
+        type: Number,
     },
-    availableOutput:{
-        type:Number,
-    },
-    contact:{
-        type:Number,
-    },
-    verifiedContact:{
-        type:Boolean,
-        default:false
+    contact: {
+        type: Number,
     },
     buyFrom:{
         type:[String],
 
     },
-    sellTo:{
-        type:[String],
+    sellTo: {
+        type: [String],
 
     },
-    
+
 
 
 
 });
 
-const User = mongoose.model('User',userSchema);
+const User = mongoose.model('User',UserSchema);
 
 module.exports = User;
