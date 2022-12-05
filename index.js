@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const signup = require('./routes/signUp');
 const login = require('./routes/logIn');
+const verifymail = require('./routes/verifyEmail');
 const cookieParser = require('cookie-parser');
 const app = express();
 require('dotenv').config();
@@ -11,6 +12,7 @@ app.use(cookieParser())
 
 app.use('/api/v1/signup',signup);
 app.use('/api/v1/login',login);
+app.use('/api/v1/verifymail',verifymail);
 
 
 
