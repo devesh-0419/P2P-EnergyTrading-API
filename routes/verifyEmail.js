@@ -1,9 +1,9 @@
 const express = require('express');
 const User = require('../models/user');
 const router = express();
-const {requireAuth} = require('../middleware/levelAuth')
+const {Auth} = require('../middleware/levelAuth')
 
-router.post('/',requireAuth,(req,res)=>{
+router.post('/',Auth,(req,res)=>{
        return res.send('verified user');
 });
 
