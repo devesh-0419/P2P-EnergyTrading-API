@@ -17,7 +17,9 @@ router.post('/',async (req,res)=>{
                // console.log('req.body.password', req.body.password);
                 user = new User(req.body);
                 await user.save();
-                 const token = createToken(user.email);
+        
+              //  console.log('data', data);
+                const token = createToken(user);
                  res.cookie('jwt',token,{maxAge:3600*1000});
                 return res.json({
                     signedUp:true

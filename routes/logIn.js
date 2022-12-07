@@ -12,13 +12,9 @@ router.post('/',async (req,res)=>{
            if(user){
                let match=await bcrypt.compare(req.body.password,user.password);
                if(match){
-                const data= {
-                    email:user.email,
-                    verifiedMail:user.verifiedMail,
-                    isNode:user.isNode
-                };
+               
               //  console.log('data', data);
-                const token = createToken(data);
+                const token = createToken(user);
                  res.cookie('jwt',token,{maxAge:3600*1000});
                 return res.json({message:'Logged In...'});
                }

@@ -4,8 +4,8 @@ const nodemailer=require('nodemailer');
 const message = {
     from:process.env.MAIL_From,
     to:'',
-    subject:'testing..',
-    text:"first mail"
+    subject:'Verify Your Email ID',
+    text:""
 }
 
 
