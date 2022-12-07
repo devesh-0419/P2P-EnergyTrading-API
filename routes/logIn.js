@@ -1,7 +1,7 @@
 const express = require('express');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
-const {createToken} = require('../controllers/auth');
+const {createToken} = require('../controllers/jwtGenerator');
 const router = express();
 
 router.post('/',async (req,res)=>{

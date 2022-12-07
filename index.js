@@ -12,7 +12,12 @@ app.use(cookieParser());
 
 app.use("/api/v1/signup", signup);
 app.use("/api/v1/login", login);
-app.use("/api/v1/verifymail", verifymail);
+app.use("/api/v1", verifymail);
+
+process.on('uncaughtException', function (err) {
+  console.log('uncaughtException',err);
+}); 
+
 
 mongoose
   .connect(

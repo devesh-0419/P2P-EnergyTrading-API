@@ -16,7 +16,7 @@ const verifiedMail = (req, res, next) => {
     if (decodedtoken.verifiedMail) {
       next();
     } else {
-      return res.status("400").json({ message: "very your mail" });
+      return res.status("400").json({ message: "verify your mail" });
     }
   } else {
     return res.status("400").json({ message: "Bad request.." });
@@ -27,11 +27,24 @@ const Auth = (req, res, next) => {
   const decodedtoken = decodedToken(token);
   console.log("decodedtoken", decodedtoken);
   if (decodedtoken) {
+    req.user=decodedtoken.email;
     next();
   } else {
     return res.status("401").json({ message: "Unauthorised..." });
   }
 };
 
-
-module.exports = { verifiedMail, Auth };
+const verifiedNode = (req, res, next) => {
+  const token = req.cookies.jwt;
+  const decodedtoken = decodedToken(token);
+  if (decodedtoken) {
+    if (decodedtoken.isNode) {
+      next();
+    } else {
+      return res.status("400").json({ message: "add metaMask address..." });
+    }
+  } else {
+    return res.status("400").json({ message: "Bad request.." });
+  }
+};
+module.exports = { verifiedMail, Auth, verifiedNode };

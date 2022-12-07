@@ -53,6 +53,23 @@ const userSchema=mongoose.Schema({
         type:[String],
 
     },
+    address:{
+        type:String,
+
+    },
+    city:{
+        type:String,
+    },
+    state:{
+        type:String,
+
+    },
+    country:{
+        type:String,
+
+    },
+   
+    
     
 
 
