@@ -6,15 +6,15 @@ const router = express();
 
 router.post('/',async (req,res)=>{
     try {
-       // console.log('req.body', req.body);
+        console.log('req.body', typeof(req.body),req.body);
         let user = await User.findOne({email:req.body.email});
         //console.log('user', user)
-        if(user) return res.json({registered:false,message:"User exist..."}); 
+        if(user) return res.json({signedUp:false,message:"User exist..."}); 
         else {
             let saltRound=10;
          bcrypt.hash(req.body.password,saltRound).then(async(hash)=>{
                 req.body.password=hash;
-               // console.log('req.body.password', req.body.password);
+                console.log('req.body.password', req.body.password);
                 user = new User(req.body);
                 await user.save();
         
@@ -24,6 +24,7 @@ router.post('/',async (req,res)=>{
                 return res.json({
                     signedUp:true
                    }); 
+                console.log("jdj");
             });
             
          
@@ -31,6 +32,9 @@ router.post('/',async (req,res)=>{
         }
     } catch (e) {
         console.error("Error: ",e);
+        res.json({
+            signedUp:false
+           })
     }
 });
 

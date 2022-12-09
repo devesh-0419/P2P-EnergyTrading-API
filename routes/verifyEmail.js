@@ -35,7 +35,7 @@ router.post("/verifymail", Auth, async (req, res) => {
     if (newOtp||user) {          //   will change the logical operater 
       if (777777 == req.body.otp||newOtp.otp==req.body.otp) { 
             //for testing purpose (because once monica said 7 7 7 7 7 7 ..)
-           // console.log('user', user.verifiedMail);
+
         user.verifiedMail = true;
         const result = await user.save();
       

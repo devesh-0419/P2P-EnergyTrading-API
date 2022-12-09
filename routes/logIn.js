@@ -8,7 +8,7 @@ router.post('/',async (req,res)=>{
   try {
            let user = await User.findOne({email:req.body.email})
                                 .select('email password verifiedMail isNode');
-          // console.log('user', user)
+          console.log('user', user)
            if(user){
                let match=await bcrypt.compare(req.body.password,user.password);
                if(match){
@@ -16,14 +16,15 @@ router.post('/',async (req,res)=>{
               //  console.log('data', data);
                 const token = createToken(user);
                  res.cookie('jwt',token,{maxAge:3600*1000});
-                return res.json({message:'Logged In...'});
+                return res.json({ loggedIn:true, message:'Logged In...'});
                }
            }
            else{
-            return res.json({message:'Please check id or password'});
+            return res.json({ loggedIn:false, message:'Please check id or password'});
            }
   } catch (e) {
     console.error(e);
+    return res.json({ loggedIn:false, message:'Please check id or password'});
   }
 
 });

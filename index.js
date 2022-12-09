@@ -4,11 +4,24 @@ const signup = require("./routes/signUp");
 const login = require("./routes/logIn");
 const verifymail = require("./routes/verifyEmail");
 const cookieParser = require("cookie-parser");
+const cors =require('cors')
 const app = express();
 require("dotenv").config();
 
 app.use(express.json());
 app.use(cookieParser());
+
+
+//cors 
+
+
+  const whitelist = ['https://eccentricstore.netlify.app','http://localhost:3000','http://192.168.43.230:19006','http://127.0.0.1:5173']
+
+app.use(cors({
+    origin:whitelist,
+credentials:true
+}));
+
 
 app.use("/api/v1/signup", signup);
 app.use("/api/v1/login", login);

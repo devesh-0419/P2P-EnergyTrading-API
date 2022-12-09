@@ -14,6 +14,7 @@ const verifiedMail = (req, res, next) => {
   const decodedtoken = decodedToken(token);
   if (decodedtoken) {
     if (decodedtoken.verifiedMail) {
+      req.user=decodedtoken.email;
       next();
     } else {
       return res.status("400").json({ message: "verify your mail" });
@@ -39,6 +40,7 @@ const verifiedNode = (req, res, next) => {
   const decodedtoken = decodedToken(token);
   if (decodedtoken) {
     if (decodedtoken.isNode) {
+      req.user=decodedtoken.email;
       next();
     } else {
       return res.status("400").json({ message: "add metaMask address..." });
