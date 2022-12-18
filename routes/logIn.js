@@ -10,16 +10,18 @@ router.post('/',async (req,res)=>{
                                 .select('email password verifiedMail isNode');
           console.log('user', user)
            if(user){
+
                let match=await bcrypt.compare(req.body.password,user.password);
+               console.log(match);
                if(match){
                
-              //  console.log('data', data);
                 const token = createToken(user);
                  res.cookie('jwt',token,{maxAge:3600*1000});
                 return res.json({ loggedIn:true, message:'Logged In...'});
                }
            }
            else{
+
             return res.json({ loggedIn:false, message:'Please check id or password'});
            }
   } catch (e) {

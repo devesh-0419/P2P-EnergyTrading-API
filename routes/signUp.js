@@ -2,11 +2,24 @@ const express = require('express');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const {createToken} = require('../controllers/jwtGenerator');
+const Joi = require('joi');
+const { schema } = require('../models/user');
 const router = express();
 
 router.post('/',async (req,res)=>{
     try {
-        console.log('req.body', typeof(req.body),req.body);
+
+     const Schema = {
+        name:Joi.string().min(3).max(256).required(),
+        password:Joi.string().min(6).max(256).required(),
+        email:Joi.string().min(3).max(256).required().email()
+     };
+    
+     let result = Joi.valid(req.body,schema);
+
+
+
+        console.log('req.body', result);
         let user = await User.findOne({email:req.body.email});
         //console.log('user', user)
         if(user) return res.json({signedUp:false,message:"User exist..."}); 

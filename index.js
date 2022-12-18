@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const signup = require("./routes/signUp");
 const login = require("./routes/logIn");
 const verifymail = require("./routes/verifyEmail");
+const userDetails = require("./routes/addDetails");
 const cookieParser = require("cookie-parser");
 const cors =require('cors')
 const app = express();
@@ -26,6 +27,7 @@ credentials:true
 app.use("/api/v1/signup", signup);
 app.use("/api/v1/login", login);
 app.use("/api/v1", verifymail);
+app.use("/api/v1", userDetails);
 
 process.on('uncaughtException', function (err) {
   console.log('uncaughtException',err);

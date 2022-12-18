@@ -24,6 +24,7 @@ const userSchema=mongoose.Schema({
     },
     metaMaskAddress:{
         type:String,
+        minlength:40,
         maxlength:256,
         unique:true,
         sparse:true
