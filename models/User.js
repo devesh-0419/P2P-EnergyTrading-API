@@ -54,9 +54,12 @@ const userSchema=mongoose.Schema({
         type:[String],
 
     },
-    address:{
+    landmark:{
         type:String,
 
+    },
+    pincode :{
+        type : String
     },
     city:{
         type:String,

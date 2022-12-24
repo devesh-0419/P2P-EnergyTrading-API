@@ -8,6 +8,8 @@ router.post('/addinfo',Auth,verifiedMail,async (req,res)=>{
          try {
    
          } catch (e) {
+         
+        
             
          }
 });

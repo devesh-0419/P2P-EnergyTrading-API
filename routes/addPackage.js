@@ -9,7 +9,7 @@ router.post('/addpackage',Auth,verifiedNode,async (req,res)=>{
    try {
             let user = await User.findOne({email:req.user});
             if(user){
-
+               
                 let package = new Package({
                     ownerId:user._id,
                      price : req.price,
@@ -32,11 +32,13 @@ router.post('/addpackage',Auth,verifiedNode,async (req,res)=>{
 });
 
 
-router.get('/getallpackage',Auth,verifiedNode,async (req,res)=>{
+router.get('/getallpackage',
+// Auth,verifiedNode,
+async (req,res)=>{
    try {
             let packages = await Package.find()
                                         .select('-_id -unitPrice')
-                                        .populate('ownerId','-_id name email');
+                                        .populate('ownerId','-_id -password -verifiedMail -verifiedContact -buyFrom -sellTo');
             if(packages){
                   res.send(packages);
             }
@@ -44,3 +46,5 @@ router.get('/getallpackage',Auth,verifiedNode,async (req,res)=>{
     console.error(e);
    }
 });
+
+module.exports  = router;

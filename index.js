@@ -4,6 +4,8 @@ const signup = require("./routes/signUp");
 const login = require("./routes/logIn");
 const verifymail = require("./routes/verifyEmail");
 const userDetails = require("./routes/addDetails");
+const packages = require("./routes/addPackage");
+
 const cookieParser = require("cookie-parser");
 const cors =require('cors')
 const app = express();
@@ -28,6 +30,7 @@ app.use("/api/v1/signup", signup);
 app.use("/api/v1/login", login);
 app.use("/api/v1", verifymail);
 app.use("/api/v1", userDetails);
+app.use("/api/v1",packages);
 
 process.on('uncaughtException', function (err) {
   console.log('uncaughtException',err);
