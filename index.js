@@ -3,13 +3,15 @@ const mongoose = require("mongoose");
 const signup = require("./routes/signUp");
 const login = require("./routes/logIn");
 const verifymail = require("./routes/verifyEmail");
-const userDetails = require("./routes/addDetails");
+const userDetails = require("./routes/userProfileRoutes");
 const packages = require("./routes/addPackage");
 
 const cookieParser = require("cookie-parser");
 const cors =require('cors')
 const app = express();
 require("dotenv").config();
+
+mongoose.set('strictQuery', true);
 
 app.use(express.json());
 app.use(cookieParser());
