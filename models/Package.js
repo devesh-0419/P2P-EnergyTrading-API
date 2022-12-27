@@ -8,7 +8,6 @@ const packageSchema = mongoose.Schema({
     },
     unitPrice:{      // calc while creating Price of 1 unit of electricity
         type:Number,
-        required:true
     },
     duration:{
         type:Number,  //(take month(28), week(7))

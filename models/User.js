@@ -1,85 +1,87 @@
-const mongoose= require('mongoose');
+const mongoose = require('mongoose');
 
-const userSchema=mongoose.Schema({
-    name:{
-        type:String,
-        required:true,
-        minlength:3,
-        maxlength:256
+const userSchema = mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        minlength: 3,
+        maxlength: 256
     },
-    email:{
-        type:String,
-        unique:true,
-        required:true,
-        maxlength:256,
-        minlength:10
+    email: {
+        type: String,
+        unique: true,
+        required: true,
+        maxlength: 256,
+        minlength: 10
     },
-    password:{
-      type:String,
-      required:true
+    password: {
+        type: String,
+        required: true
     },
-    verifiedMail:{
-        type:Boolean,
-        default:false
+    verifiedMail: {
+        type: Boolean,
+        default: false
     },
-    metaMaskAddress:{
-        type:String,
-        minlength:40,
-        maxlength:256,
-        unique:true,
-        sparse:true
+    metaMaskAddress: {
+        type: String,
+        minlength: 40,
+        maxlength: 256,
+        unique: true,
+        sparse: true
     },
-    isNode:{
-        type:Boolean,
-        default:false
+    isNode: {
+        type: Boolean,
+        default: false
     },
-    maxOutput:{
-        type:Number,
+    maxOutput: {
+        type: Number,
     },
-    availableOutput:{
-        type:Number,
+    availableOutput: {
+        type: Number,
     },
-    contact:{
-        type:Number,
+    contact: {
+        type: Number,
     },
-    verifiedContact:{
-        type:Boolean,
-        default:false
+    verifiedContact: {
+        type: Boolean,
+        default: false
     },
-    buyFrom:{
-        type:[String],
-
-    },
-    sellTo:{
-        type:[String],
+    buyFrom: {
+        type: [String],
 
     },
-    landmark:{
-        type:String,
+    sellTo: {
+        type: [String],
 
     },
-    pincode :{
-        type : String
-    },
-    city:{
-        type:String,
-    },
-    state:{
-        type:String,
+    landmark: {
+        type: String,
 
     },
-    country:{
-        type:String,
+    pincode: {
+        type: String
+    },
+    city: {
+        type: String,
+    },
+    state: {
+        type: String,
 
     },
-   
-    
-    
+    country: {
+        type: String,
 
+    },
+    createdPackages: [{
 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Package',
+        required: true
+
+    }]
 
 });
 
-const User = mongoose.model('User',userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
