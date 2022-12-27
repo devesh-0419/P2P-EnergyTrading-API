@@ -6,7 +6,7 @@ module.exports.createToken = (user) => {
     verifiedMail:user.verifiedMail,
     isNode:user.isNode
 };
-    console.log('id', data);
-      return jwt.sign(data,process.env.TOKEN_SECRET,{expiresIn:expire});
+    console.log('id', data , );
+      return jwt.sign(data,process.env.TOKEN_SECRET || "jhasaskjlaaskjlas",{expiresIn:expire});
 };
 

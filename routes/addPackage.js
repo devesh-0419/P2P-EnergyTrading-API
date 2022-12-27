@@ -5,29 +5,36 @@ const Package = require('../models/package');
 const router = express();
 const {Auth,verifiedNode} = require('../middleware/levelAuth');
 
-router.post('/addpackage',Auth,verifiedNode,async (req,res)=>{
+router.post('/addpackage',Auth,
+// verifiedNode,
+async (req,res)=>{
    try {
             let user = await User.findOne({email:req.user});
             if(user){
                
                 let package = new Package({
                     ownerId:user._id,
-                     price : req.price,
-                     duration : req.duration,
-                     dailyLimit : req.dailyLimit
+                     price : req.body.price,
+                     duration : req.body.duration,
+                     dailyLimit : req.body.dailyLimit
                     
                 });
 
                const result =  await package.save();
 
-                res.json({package:result});
+               await User.findOneAndUpdate({email:req.user},{$push : {createdPackages : result._id}},{
+                  new: true
+              });
+
+                res.json({ isPackageAdded : true, package:result});
             }
             else{
                 console.log('user',  user   );
-                res.json({message:"user not found"});
+                res.json({ isPackageAdded : false, message:"user not found"});
                    }
    } catch (e) {
     console.error(e);
+    res.json({ isPackageAdded : false, message:"user not found"});
    }
 });
 
@@ -38,7 +45,7 @@ async (req,res)=>{
    try {
             let packages = await Package.find()
                                         .select('-_id -unitPrice')
-                                        .populate('ownerId','-_id -password -verifiedMail -verifiedContact -buyFrom -sellTo');
+                                        .populate('ownerId','-_id -password -verifiedMail -verifiedContact -buyFrom -sellTo -createdPackages');
             if(packages){
                   res.send(packages);
             }
