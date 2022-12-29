@@ -17,21 +17,22 @@ const verifiedMail = (req, res, next) => {
       req.user=decodedtoken.email;
       next();
     } else {
-      return res.status("400").json({ message: "verify your mail" });
+      return res.status("400").json({ isError:true ,message: "verify your mail" });
     }
   } else {
-    return res.status("400").json({ message: "Bad request.." });
+    return res.status("400").json({ isError:true ,message: "Bad request.." });
   }
 };
 const Auth = (req, res, next) => {
   const token = req.cookies.jwt;
+  console.log(123,token);
   const decodedtoken = decodedToken(token);
   console.log("decodedtoken", decodedtoken);
   if (decodedtoken) {
     req.user=decodedtoken.email;
     next();
   } else {
-    return res.status("401").json({ message: "Unauthorised..." });
+    return res.status(401).json({ isError:true, message: "Unauthorised..." });
   }
 };
 
@@ -43,10 +44,10 @@ const verifiedNode = (req, res, next) => {
       req.user=decodedtoken.email;
       next();
     } else {
-      return res.status("400").json({ message: "add metaMask address..." });
+      return res.status("400").json({ isError:true,message: "add metaMask address..." });
     }
   } else {
-    return res.status("400").json({ message: "Bad request.." });
+    return res.status("400").json({ isError:true ,message: "Bad request.." });
   }
 };
 module.exports = { verifiedMail, Auth, verifiedNode };

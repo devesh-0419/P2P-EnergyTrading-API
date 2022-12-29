@@ -17,16 +17,16 @@ router.post('/',async (req,res)=>{
                
                 const token = createToken(user);
                  res.cookie('jwt',token,{maxAge:3600*1000});
-                return res.json({ loggedIn:true, message:'Logged In...'});
+                return res.json({ jwt : token, isError:false, loggedIn:true, message:'Logged In...'});
                }
            }
            else{
 
-            return res.json({ loggedIn:false, message:'Please check id or password'});
+            return res.json({ isError:true, loggedIn:false, message:'Please check id or password'});
            }
   } catch (e) {
     console.error(e);
-    return res.json({ loggedIn:false, message:'Please check id or password'});
+    return res.json({ isError:true, loggedIn:false, message:'Please check id or password'});
   }
 
 });

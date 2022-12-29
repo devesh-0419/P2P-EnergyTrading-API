@@ -2,9 +2,7 @@ const mongoose= require('mongoose');
 
 const NotificationSchema=mongoose.Schema({ 
     
-        id: {
-            type: String
-        },
+      
         title: {
             type: String
         },

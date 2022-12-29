@@ -45,7 +45,7 @@ async (req,res)=>{
    try {
             let packages = await Package.find()
                                         .select('-_id -unitPrice')
-                                        .populate('ownerId','-_id -password -verifiedMail -verifiedContact -buyFrom -sellTo -createdPackages');
+                                        .populate('ownerId','-_id -password -verifiedMail -verifiedContact -buyFrom -sellTo -createdPackages -metaMaskAddress -isNode -contact');
             if(packages){
                   res.send(packages);
             }

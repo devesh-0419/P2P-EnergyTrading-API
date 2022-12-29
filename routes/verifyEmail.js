@@ -19,7 +19,7 @@ router.post("/sendotp", Auth, async (req, res) => {
 
     const result = await otp.save();
 
-    sendCostumMail(req.user, `Your OTP is ${result.otp}. valid for 5 min only`);
+    await sendCostumMail(req.user, `Your OTP is ${result.otp}. valid for 5 min only`);
 
     return res.json({ message: "otp generated sucessfully" });
   } catch (e) {

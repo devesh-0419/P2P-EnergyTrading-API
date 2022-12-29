@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
         // console.log('req.body', result);
         let user = await User.findOne({ email: req.body.email });
         //console.log('user', user)
-        if (user) return res.json({ signedUp: false, message: "User exist..." });
+        if (user) return res.json({ isError:true, signedUp: false, message: "User exist..." });
         else {
             
             let saltRound = 10;
@@ -36,6 +36,8 @@ router.post('/', async (req, res) => {
                 const token = createToken(user);
                 res.cookie('jwt', token, { maxAge: 3600 * 1000 });
                 return res.json({
+                    jwt : token,
+                    isError:false,
                     signedUp: true
                 });
             });
@@ -46,6 +48,7 @@ router.post('/', async (req, res) => {
     } catch (e) {
         console.error("Error: ", e);
         res.json({
+            isError:true,
             signedUp: false
         })
     }

@@ -40,7 +40,7 @@ const userSchema = mongoose.Schema({
         type: Number,
     },
     contact: {
-        type: Number,
+        type: String,
     },
     verifiedContact: {
         type: Boolean,

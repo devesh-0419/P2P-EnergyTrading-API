@@ -10,7 +10,7 @@ const message = {
 
 
 
-const sendCostumMail = (to,msg)=>{
+const sendCostumMail =async (to,msg)=>{
     message.to=to;
     message.text=msg;
 
