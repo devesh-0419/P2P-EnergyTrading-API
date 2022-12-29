@@ -3,20 +3,20 @@ const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        // required: true,
         minlength: 3,
         maxlength: 256
     },
     email: {
         type: String,
-        unique: true,
-        required: true,
+        // unique: true,
+        // required: true,
         maxlength: 256,
         minlength: 10
     },
     password: {
         type: String,
-        required: true
+        // required: true
     },
     verifiedMail: {
         type: Boolean,
@@ -26,7 +26,7 @@ const userSchema = mongoose.Schema({
         type: String,
         minlength: 40,
         maxlength: 256,
-        unique: true,
+        // unique: true,
         sparse: true
     },
     isNode: {

@@ -35,11 +35,8 @@ router.post("/verifymail", Auth, async (req, res) => {
     if (newOtp||user) {          //   will change the logical operater 
       if (777777 == req.body.otp||newOtp.otp==req.body.otp) { 
             //for testing purpose (because once monica said 7 7 7 7 7 7 ..)
-
-        user.verifiedMail = true;
-        const result = await user.save();
-      
-        
+      let user = await User.findOneAndUpdate({ email: req.user },{verifiedMail:true});
+        console.log(result);
       //  console.log('data', data);
         const token = createToken(user);
          res.cookie('jwt',token,{maxAge:3600*1000});

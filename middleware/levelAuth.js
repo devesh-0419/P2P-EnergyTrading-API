@@ -17,10 +17,10 @@ const verifiedMail = (req, res, next) => {
       req.user=decodedtoken.email;
       next();
     } else {
-      return res.status("400").json({ isError:true ,message: "verify your mail" });
+      return res.status(400).json({ isError:true ,message: "verify your mail" });
     }
   } else {
-    return res.status("400").json({ isError:true ,message: "Bad request.." });
+    return res.status(400).json({ isError:true ,message: "Bad request.." });
   }
 };
 const Auth = (req, res, next) => {
@@ -44,10 +44,10 @@ const verifiedNode = (req, res, next) => {
       req.user=decodedtoken.email;
       next();
     } else {
-      return res.status("400").json({ isError:true,message: "add metaMask address..." });
+      return res.status(400).json({ isError:true,message: "add metaMask address..." });
     }
   } else {
-    return res.status("400").json({ isError:true ,message: "Bad request.." });
+    return res.status(400).json({ isError:true ,message: "Bad request.." });
   }
 };
 module.exports = { verifiedMail, Auth, verifiedNode };
