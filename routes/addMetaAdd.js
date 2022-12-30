@@ -8,7 +8,7 @@ router.post('/addHexAddress',Auth,verifiedMail,async(req,res)=>{
     try {
         let user = await User.find({email:req.user});
         if(user){
-            user.metaMaskAddress=req.metaMaskAddress;
+            user.metaMaskAddress=req.body.metaMaskAddress;
             user.isNode = true;
             const result = await user.save();
             const token = createToken(user);

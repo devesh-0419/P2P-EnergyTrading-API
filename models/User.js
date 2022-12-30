@@ -26,8 +26,8 @@ const userSchema = mongoose.Schema({
         type: String,
         minlength: 40,
         maxlength: 256,
-        unique: true,
-        sparse: true
+        // unique: true,
+        // sparse: true
     },
     isNode: {
         type: Boolean,

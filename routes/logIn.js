@@ -17,7 +17,7 @@ router.post('/',async (req,res)=>{
                
                 const token = createToken(user);
                  res.cookie('jwt',token,{maxAge:3600*1000});
-                return res.json({ jwt : token, isError:false, loggedIn:true, message:'Logged In...'});
+                return res.json({ isError:false, loggedIn:true, message:'Logged In...'});
                }
            }
            else{
