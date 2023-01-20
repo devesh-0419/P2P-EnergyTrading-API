@@ -16,7 +16,8 @@ const userSchema = mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minlength: 5
     },
     verifiedMail: {
         type: Boolean,
@@ -78,7 +79,15 @@ const userSchema = mongoose.Schema({
         ref: 'Package',
         required: true
 
-    }]
+    }],
+    buyingRequest:[{
+          type:mongoose.Schema.Types.ObjectId,
+          ref: 'Package',
+    }],
+    pendingRequest:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'Package',
+  }],
 
 });
 

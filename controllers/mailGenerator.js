@@ -26,6 +26,7 @@ const sendCostumMail =async (to,msg)=>{
         }).sendMail(message,err=>{
             if (err) {
                 console.error(err.message);
+                return false;
             } else {
                 console.log('message sent');
                 return true;

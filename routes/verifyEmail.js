@@ -33,25 +33,23 @@ router.post("/verifymail", Auth, async (req, res) => {
     let newOtp = await Otp.findOne({ email: req.user });
     let user = await User.findOne({ email: req.user });
     if (newOtp||user) {          //   will change the logical operater 
-      if (777777 == req.body.otp||newOtp.otp==req.body.otp) { 
+      if (newOtp.otp==req.body.otp) { 
             //for testing purpose (because once monica said 7 7 7 7 7 7 ..)
-
-        user.verifiedMail = true;
-        const result = await user.save();
-      
-        
+      let user = await User.findOneAndUpdate({ email: req.user },{verifiedMail:true});
+        // console.log(result);
       //  console.log('data', data);
         const token = createToken(user);
          res.cookie('jwt',token,{maxAge:3600*1000});
-        return res.json({ emailverified: "true" });
+        return res.json({ emailverified: true });
       } else {
-        return res.json({ emailverified: "false", message: "Check otp" });
+        return res.json({ emailverified: false, message: "Check otp" });
       }
     } else {
-      return res.json({ message: "Regenerate OTP..." });
+      return res.json({ emailverified: false, message: "Regenerate OTP..." });
     }
   } catch (e) {
     console.error(e);
+    return res.json({ emailverified: false, message: "Regenerate OTP..." });
   }
 });
 

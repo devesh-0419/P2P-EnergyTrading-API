@@ -19,6 +19,9 @@ router.post('/',async (req,res)=>{
                  res.cookie('jwt',token,{maxAge:3600*1000});
                 return res.json({ isError:false, loggedIn:true, message:'Logged In...'});
                }
+               else{
+                return res.json({ isError:true, loggedIn:false, message:'Please check id or password'});
+               }
            }
            else{
 

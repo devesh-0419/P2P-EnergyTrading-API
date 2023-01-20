@@ -39,13 +39,14 @@ async (req,res)=>{
 });
 
 
-router.get('/getallpackage',
-// Auth,verifiedNode,
+router.get('/getallpackage/:ownerId', Auth,
+// verifiedNode,
 async (req,res)=>{
+   console.log(req.params.ownerId);
    try {
-            let packages = await Package.find()
-                                        .select('-_id -unitPrice')
-                                        .populate('ownerId','-_id -password -verifiedMail -verifiedContact -buyFrom -sellTo -createdPackages -metaMaskAddress -isNode -contact');
+            let packages = await Package.find({ownerId:{$ne:req.params.ownerId}})
+                                        .select('-unitPrice')
+                                        .populate('ownerId','-password -verifiedMail -verifiedContact -buyFrom -sellTo -createdPackages -metaMaskAddress -isNode');
             if(packages){
                   res.send(packages);
             }

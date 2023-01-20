@@ -23,6 +23,18 @@ const packageSchema = mongoose.Schema({
         type:Boolean,
         default:true
     },
+    approved:{
+        type:Boolean,
+        default:false 
+    },
+    purchased:{
+        type:Boolean,
+        default:false 
+    },
+    ready:{
+        type:Boolean,
+        default:false 
+    }
 
 });
 

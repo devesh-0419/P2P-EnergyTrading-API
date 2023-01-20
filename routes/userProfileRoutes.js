@@ -4,7 +4,7 @@ const User = require('../models/user');
 const router = express();
 const { Auth, verifiedMail } = require('../middleware/levelAuth');
 
-router.post('/updateuseraddress', Auth,verifiedMail, async (req, res) => {
+router.post('/updateuseraddress', Auth, async (req, res) => {
     try {
         console.log(req.body);
         await User.findOneAndUpdate({ email: req.user }, req.body, {
@@ -21,7 +21,7 @@ router.post('/updateuseraddress', Auth,verifiedMail, async (req, res) => {
 
 router.get('/private/getuserdata', Auth, async (req, res) => {
     try {
-        let user = await User.findOne({ email: req.user }).select('-password -_id').populate("createdPackages");
+        let user = await User.findOne({ email: req.user }).select('-password').populate("createdPackages");
         if (user) {
             res.json({ isError: false ,data : user});
         }
