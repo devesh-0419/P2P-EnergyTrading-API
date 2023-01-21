@@ -21,7 +21,13 @@ router.post('/updateuseraddress', Auth, async (req, res) => {
 
 router.get('/private/getuserdata', Auth, async (req, res) => {
     try {
-        let user = await User.findOne({ email: req.user }).select('-password').populate("createdPackages");
+        let user = await User.findOne({ email: req.user }).select('-password').populate("createdPackages").populate({path:"pendingRequest",populate :{
+            path : 'ownerId',
+            model : 'User'
+        }}).populate({path:"buyingRequest",populate :{
+            path : 'ownerId',
+            model : 'User'
+        }});
         if (user) {
             res.json({ isError: false ,data : user});
         }

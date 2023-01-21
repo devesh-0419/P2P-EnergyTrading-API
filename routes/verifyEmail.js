@@ -42,6 +42,7 @@ router.post("/verifymail", Auth, async (req, res) => {
          res.cookie('jwt',token,{maxAge:3600*1000});
         return res.json({ emailverified: true });
       } else {
+        console.log(newOtp.otp);
         return res.json({ emailverified: false, message: "Check otp" });
       }
     } else {
